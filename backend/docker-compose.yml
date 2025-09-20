@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  crop-prediction-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./saved_models:/app/saved_models
+    restart: unless-stopped
+    
+  # Uncomment this when you want to add a database service
+  # database:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_DB: crop_prediction
+  #     POSTGRES_USER: user
+  #     POSTGRES_PASSWORD: password
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   restart: unless-stopped
+
+# volumes:
+#   postgres_data:
